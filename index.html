@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--Based on https://github.com/mjfoster83/web-map-workshop/blob/master/7_advancedMapping_CartoDB/index-completed.html-->
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Tooltips</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#thetooltip" ).tooltip({
+        content: function( callback ) {
+            if ( tooltipState === "roses" ) {
+              callback( "Roses" );
+            } else if(tooltipState === "violets" ) {
+              callback( "Violets" );
+            }
+        }
+        , hide: {duration:1000}
+    });
+  });
+  </script>
+  </head>
+  <body>
+      <div id="thetooltip" title="">Hover over this to display a tooltip</div>
+      <button id="roses">Tooltip="Roses"</button>
+      <button id="violets">Tooltip="Violets"</button>
+      <br>
+      <button id="shower">ShowTooltip</button>
+      <script>
+      var tooltipState = "default";
+          
+          $( "#thetooltip" ).tooltip();
+          $("#roses").on('click', function(){
+              tooltipState = "roses";
+          });
+          
+          $("#violets").on('click', function(){
+              tooltipState = "violets";
+          });
+          
+          $("#shower").on('click', function(){
+              $( "#thetooltip").tooltip("open");
+          });
+      </script>
+    </body>
+</html>
